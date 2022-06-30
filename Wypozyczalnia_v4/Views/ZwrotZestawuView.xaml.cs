@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Wypozyczalnia_v4.Views
     /// </summary>
     public partial class ZwrotZestawuView : UserControl
     {
-        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
         public ZwrotZestawuView()
         {
             InitializeComponent();
@@ -31,33 +32,8 @@ namespace Wypozyczalnia_v4.Views
         {
             using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
             {
-
-               /* var idZestawu = context.Zestaw.Select(i => i.Id == Int32.Parse(BoxZwrot.Text));
-                
-                var idNart = 
-
-
-
-
-
-
-
-                var nartyStatus = context.Narty.Single(i => i.Id == idZestawu);
-                nartyStatus.StatusID = 1;
-
-                var butyStatus = context.Buty.Single(i => i.Id == Int32.Parse(BoxButy.Text));
-                butyStatus.StatusID = 1;
-
-                var kaskiStatus = context.Kaski.Single(i => i.Id == Int32.Parse(BoxKask.Text));
-                kaskiStatus.StatusID = 1;
-
-                var kijkiStatus = context.Kijki.Single(i => i.Id == Int32.Parse(BoxKij.Text));
-                kijkiStatus.StatusID = 1;
-                context.Update(nartyStatus);
-                context.Update(butyStatus);
-                context.Update(kaskiStatus);
-                context.Update(kijkiStatus);
-                context.SaveChanges();*/
+                context.Database.ExecuteSqlCommand("EXEC ZmieńStatus " + BoxZwrot.Text + ",1");
+                context.SaveChanges();
             }
         }
     }

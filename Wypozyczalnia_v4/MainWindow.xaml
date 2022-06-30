@@ -72,6 +72,10 @@
                         Style="{StaticResource MenuButtonTheme}" Click="ZwrotZestawuView_Clicked"/>
             </StackPanel>
 
+            <TextBlock Grid.Row="1" Grid.Column="1">
+                Ala ma kota
+            </TextBlock>
+            
             <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding}"/>
         </Grid>
     </Border>

@@ -180,7 +180,6 @@
     <Compile Include="ViewModels\DodajKlientaViewModel.cs" />
     <Compile Include="ViewModels\StronaGłównaViewModel.cs" />
     <Compile Include="ViewModels\ZwrotZestawuViewModel.cs" />
-    <Compile Include="Views\dispatcherTimer.cs" />
     <Compile Include="Views\DodajKlientaView.xaml.cs">
       <DependentUpon>DodajKlientaView.xaml</DependentUpon>
     </Compile>

@@ -14,7 +14,7 @@ namespace Wypozyczalnia_v4.Views
     /// </summary>
     public partial class DodajZestawVIew : UserControl
     {
-        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
         public DodajZestawVIew()
         {
@@ -75,16 +75,7 @@ namespace Wypozyczalnia_v4.Views
             }
 
             MessageBox.Show("Dodano zestaw!");
-
-            /*SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmdZestaw = new SqlCommand("Select * from Zestaw", connection);
-            connection.Open();
-
-            DataTable dtZestaw = new DataTable();
-            dtZestaw.Load(cmdZestaw.ExecuteReader());
-            connection.Close();
-            
-            DataGridZestaw.DataContext = dtZestaw;*/
+           
         }
 
 

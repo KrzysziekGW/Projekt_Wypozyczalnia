@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Wypozyczalnia_v4.Views.DodajZestawVIew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="825" d:DesignWidth="1350"
+             Background="#0088cc"
+             >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1"
+                    Margin="20">
+            <TextBlock Margin="3"><Run Text="Podaj IDNart:"/></TextBlock>
+            <TextBox Text="0" x:Name="BoxNarty" Margin="3" PreviewTextInput="BoxNarty_PreviewTextInput"/>
+            <TextBlock Margin="3"><Run Text="Podaj IDButów:"/></TextBlock>
+            <TextBox Text="0" x:Name="BoxButy" Margin="3" PreviewTextInput="BoxButy_PreviewTextInput"/>
+            <TextBlock Margin="3"><Run Text="Podaj IDKasku:"/></TextBlock>
+            <TextBox Text="0" x:Name="BoxKask" Margin="3" PreviewTextInput="BoxKask_PreviewTextInput"/>
+            <TextBlock Margin="3"><Run Text="Podaj IDKijka:"/></TextBlock>
+            <TextBox Text="0" x:Name="BoxKij" Margin="3"  PreviewTextInput="BoxKij_PreviewTextInput"/>
+
+            <Button x:Name="ButtonDodajKlienta"
+                    Content="Dodaj Nowy Zestaw"
+                    Height="70"
+                    FontSize="25"                            
+                    Style="{StaticResource MenuButtonTheme}" 
+                    Click="ButtonDodajZestaw_Click"/>
+
+            <TextBlock Margin="3" Text="Podaj ID Zestawu:"/>
+            <TextBox x:Name="BoxUsun" Margin="3" PreviewTextInput="BoxUsun_PreviewTextInput"/>
+            <Button x:Name="ButtonUsunZestaw"
+                Content="Usun Zestaw"
+                Height="70"
+                FontSize="25"                            
+                Style="{StaticResource MenuButtonTheme}" 
+                Click="ButtonUsunZestaw_Click"/>
+
+        </StackPanel>
+        <DataGrid Name="DataGridZestaw" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  ItemsSource="{Binding}">
+        </DataGrid>
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Name="DataGridNarty" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="0"
+                  Grid.Row="0"
+                  ItemsSource="{Binding}"
+                      MinColumnWidth="100">
+            </DataGrid>
+
+            <DataGrid Name="DataGridKijki" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="1"
+                  Grid.Row="0"
+                  ItemsSource="{Binding}">
+            </DataGrid>
+
+            <DataGrid Name="DataGridKaski" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  ItemsSource="{Binding}">
+            </DataGrid>
+
+            <DataGrid Name="DataGridButy" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  ItemsSource="{Binding}">
+            </DataGrid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        </Grid>
+
+
+
+    </Grid>
+</UserControl>

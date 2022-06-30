@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Wypozyczalnia_v4.Views.ZwrotZestawuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="825" d:DesignWidth="1350"
+             Background="#0088cc"
+             >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Margin="3" Text="Podaj ID Zestawu:"/>
+            <TextBox x:Name="BoxZwrot" Margin="3"/>
+            <Button x:Name="ZwrotZestawu"
+                Content="Dokonaj Zwrotu"
+                Height="50"
+                FontSize="30"                            
+                Style="{StaticResource MenuButtonTheme}" Click="ButtonZwrotZestawu_Click" 
+               />
+            </StackPanel>
+    </Grid>
+</UserControl>

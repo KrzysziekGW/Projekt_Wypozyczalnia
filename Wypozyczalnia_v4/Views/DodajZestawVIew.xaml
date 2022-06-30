@@ -9,12 +9,15 @@
              Background="#0088cc"
              >
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <StackPanel Grid.Row="1"
-                    Margin="20">
+                    Margin="20"
+                    >
             <TextBlock Margin="3"><Run Text="Podaj IDNart:"/></TextBlock>
             <TextBox Text="0" x:Name="BoxNarty" Margin="3" PreviewTextInput="BoxNarty_PreviewTextInput"/>
             <TextBlock Margin="3"><Run Text="Podaj IDButów:"/></TextBlock>
@@ -40,13 +43,20 @@
                 Style="{StaticResource MenuButtonTheme}" 
                 Click="ButtonUsunZestaw_Click"/>
 
+            <DataGrid Name="DataGridZestaw" 
+                        AutoGenerateColumns="True" 
+                        Height="400"                       
+                        ItemsSource="{Binding}"
+                        MinColumnWidth="29"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"
+                        CanUserResizeRows="False"
+                      >
+            </DataGrid>
         </StackPanel>
-        <DataGrid Name="DataGridZestaw" 
-                  AutoGenerateColumns="True" 
-                  Grid.Column="1"
-                  Grid.Row="1"
-                  ItemsSource="{Binding}">
-        </DataGrid>
+        
+        
+        
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -55,37 +65,61 @@
             </Grid.ColumnDefinitions>
 
             <DataGrid Name="DataGridNarty" 
-                  AutoGenerateColumns="True" 
-                  Grid.Column="0"
-                  Grid.Row="0"
-                  ItemsSource="{Binding}"
-                      MinColumnWidth="100">
+                        AutoGenerateColumns="True" 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        ItemsSource="{Binding}"
+                        Margin="5"
+                        MinColumnWidth="88"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"
+                        CanUserResizeRows="False"
+                        >
             </DataGrid>
 
             <DataGrid Name="DataGridKijki" 
-                  AutoGenerateColumns="True" 
-                  Grid.Column="1"
-                  Grid.Row="0"
-                  ItemsSource="{Binding}">
+                        AutoGenerateColumns="True" 
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        ItemsSource="{Binding}"
+                        Margin="5"
+                        MinColumnWidth="91"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"
+                        CanUserResizeRows="False"
+                      >
             </DataGrid>
 
             <DataGrid Name="DataGridKaski" 
-                  AutoGenerateColumns="True" 
-                  Grid.Column="0"
-                  Grid.Row="1"
-                  ItemsSource="{Binding}">
+                        AutoGenerateColumns="True" 
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        ItemsSource="{Binding}"
+                        Margin="5"
+                        MinColumnWidth="87"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"
+                        CanUserResizeRows="False"
+                        >
             </DataGrid>
 
             <DataGrid Name="DataGridButy" 
-                  AutoGenerateColumns="True" 
-                  Grid.Column="1"
-                  Grid.Row="1"
-                  ItemsSource="{Binding}">
+                        AutoGenerateColumns="True" 
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        ItemsSource="{Binding}"
+                        Margin="5"
+                        MinColumnWidth="95"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"
+                        CanUserResizeRows="False"
+                        >
             </DataGrid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
+
         </Grid>
 
 

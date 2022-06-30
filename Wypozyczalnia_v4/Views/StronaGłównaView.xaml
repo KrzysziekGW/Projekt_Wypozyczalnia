@@ -25,7 +25,7 @@
             <DataGrid Name="Lista"
             Grid.Column="0" 
             Grid.Row="1"
-            Padding="50"          
+            Padding="5,35"          
             AutoGenerateColumns="True"
             ItemsSource="{Binding}">
                

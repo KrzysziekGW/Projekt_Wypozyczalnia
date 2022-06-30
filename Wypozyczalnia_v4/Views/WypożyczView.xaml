@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Wypozyczalnia_v4.Views.WypożyczView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
+             mc:Ignorable="d" 
+            d:DesignHeight="825" d:DesignWidth="1350"
+             Background="#0088cc"
+             >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1"
+                    Margin="20">
+            <TextBlock Margin="3">Podaj ID klienta:</TextBlock>
+            <TextBox x:Name="BoxKlientID" Margin="3" MaxLength="50"/>
+            <TextBlock Margin="3">Podaj ID zestawu:</TextBlock>
+            <TextBox x:Name="BoxZestawID" Margin="3" MaxLength="50"/>
+            
+            <Button x:Name="ButtonWypożycz"
+                    Content="Wypożycz"
+                    Height="75"
+                    FontSize="30"                            
+                    Style="{StaticResource MenuButtonTheme}" 
+                    Click="ButtonWypożycz_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

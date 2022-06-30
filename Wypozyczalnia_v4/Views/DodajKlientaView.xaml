@@ -46,11 +46,13 @@
         <DataGrid Name="KlienciDataGrid" 
                   AutoGenerateColumns="True" 
                   Grid.Column="1" 
-                  Margin="10,10,0,0"
+                  Margin="5"
                   ItemsSource="{Binding}"
-                  MinColumnWidth="200">
-            
-            
+                  MinColumnWidth="180"
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Hidden"
+                  CanUserResizeRows="False"
+                    >
         </DataGrid>
     </Grid>
 </UserControl>

@@ -50,5 +50,10 @@ namespace Wypozyczalnia_v4
         {
             DataContext = new ZwrotZestawuViewModel();
         }
+
+        private void WypożyczView_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new WypożyczViewModel();
+        }
     }
 }

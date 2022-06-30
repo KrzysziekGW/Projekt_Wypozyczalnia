@@ -15,18 +15,14 @@ namespace Wypozyczalnia_v4.Views
     {
         string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
+        
+
         public DodajKlientaVIew()
         {
             InitializeComponent();
 
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("Select * from Klienci", connection);
-            connection.Open();
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            connection.Close();
+            TabelKlienci();
 
-            KlienciDataGrid.DataContext = dt;
         }
         private void ButtonDodajKlienta_Click(object sender, RoutedEventArgs e)
         {
@@ -37,41 +33,28 @@ namespace Wypozyczalnia_v4.Views
                 db.SaveChanges();
 
             }
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("Select * from Klienci", connection);
-            connection.Open();
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            connection.Close();
 
-            KlienciDataGrid.DataContext = dt;
-            MessageBox.Show("Dodano klienta!");
+            TabelKlienci();
         }
 
+        
         private void ButtonUsunKlienta_Click(object sender, RoutedEventArgs e)
         {
-            
+
             using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
             {
                 string klientID = BoxID.Text;
                 int id = Int32.Parse(klientID);
-                db.Remove(new Klient {Id = id });
+                db.Remove(new Klient { Id = id });
                 db.SaveChanges();
 
             }
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand("Select * from Klienci", connection);
-            connection.Open();
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            connection.Close();
 
-            KlienciDataGrid.DataContext = dt;
-            MessageBox.Show("Usunięto klienta!");
+            TabelKlienci();
         }
 
 
-        
+
         private void BoxImie_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^a-zA-Z]");
@@ -100,5 +83,19 @@ namespace Wypozyczalnia_v4.Views
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-    }   
+
+        public void TabelKlienci()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("Select * from Klienci", connection);
+            connection.Open();
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            connection.Close();
+
+            KlienciDataGrid.DataContext = dt;
+        }
+
+    }
+
 }

@@ -179,6 +179,7 @@
     <Compile Include="ViewModels\DodajZestawViewModel.cs" />
     <Compile Include="ViewModels\DodajKlientaViewModel.cs" />
     <Compile Include="ViewModels\StronaGłównaViewModel.cs" />
+    <Compile Include="ViewModels\WypożyczViewModel.cs" />
     <Compile Include="ViewModels\ZwrotZestawuViewModel.cs" />
     <Compile Include="Views\DodajKlientaView.xaml.cs">
       <DependentUpon>DodajKlientaView.xaml</DependentUpon>
@@ -188,6 +189,9 @@
     </Compile>
     <Compile Include="Views\StronaGłównaView.xaml.cs">
       <DependentUpon>StronaGłównaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WypożyczView.xaml.cs">
+      <DependentUpon>WypożyczView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ZwrotZestawuView.xaml.cs">
       <DependentUpon>ZwrotZestawuView.xaml</DependentUpon>
@@ -217,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StronaGłównaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WypożyczView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

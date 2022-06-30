@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Wypozyczalnia_v4.DbCon
 {
+
     class WypozyczalniaContext : DbContext
     {
         public DbSet<Klient> Klienci { get; set; }

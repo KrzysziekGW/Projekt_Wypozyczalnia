@@ -26,6 +26,9 @@
         <DataTemplate x:Name="ZwrotZestawuViewTemple" DataType="{x:Type viewmodels:ZwrotZestawuViewModel}">
             <views:ZwrotZestawuView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="WypożyczViewTemple" DataType="{x:Type viewmodels:WypożyczViewModel}">
+            <views:WypożyczView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
     <Border Background="#cceeff"
             CornerRadius="20">
@@ -58,14 +61,18 @@
                         Height="75"
                         FontSize="30"
                         Style="{StaticResource MenuButtonTheme}" Click="StronaGłównaView_Clicked"/>
-                <Button Content="Dodaj Klienta"
+                <Button Content="Klienci"
                         Height="75"
                         FontSize="30"
                         Style="{StaticResource MenuButtonTheme}" Click="DodajKlientaView_Clicked"/>
-                <Button Content="Dodaj Zestaw"
+                <Button Content="Zestawy"
                         Height="75"
                         FontSize="30"
                         Style="{StaticResource MenuButtonTheme}" Click="DodajZestawView_Clicked"/>
+                <Button Content="Wypożycz"
+                        Height="75"
+                        FontSize="30"
+                        Style="{StaticResource MenuButtonTheme}" Click="WypożyczView_Clicked"/>
                 <Button Content="Zwrot Zestawu"
                         Height="75"
                         FontSize="30"

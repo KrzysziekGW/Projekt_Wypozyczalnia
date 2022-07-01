@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
              mc:Ignorable="d" 
-            d:DesignHeight="825" d:DesignWidth="1350"
+             d:DesignHeight="825" d:DesignWidth="1350"
              Background="#0088cc"
              >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="400"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1"
@@ -26,6 +26,49 @@
                     FontSize="30"                            
                     Style="{StaticResource MenuButtonTheme}" 
                     Click="ButtonWypożycz_Click"/>
+
+            <TextBlock Margin="3">Najnowszy klienta:</TextBlock>
+            
+            <DataGrid Name="TopKlientIdDataGrid" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="0" 
+                  Margin="5"
+                  ItemsSource="{Binding}"                 
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Hidden"
+                  CanUserResizeRows="False" 
+                  Height="44"
+                  >
+            </DataGrid>
+
+            <TextBlock Margin="3">Najnowszy zestaw:</TextBlock>
+            
+            <DataGrid Name="TopZestawIdDataGrid" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="0" 
+                  Margin="5"
+                  ItemsSource="{Binding}"                 
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Hidden"
+                  CanUserResizeRows="False"  
+                  Height="44"
+                  
+                  
+                  
+                  >
+            </DataGrid>
         </StackPanel>
+
+        <DataGrid Name="WypożyczoneDataGrid" 
+                  AutoGenerateColumns="True" 
+                  Grid.Column="1" 
+                  Margin="5"
+                  ItemsSource="{Binding}"                 
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Hidden"
+                  CanUserResizeRows="False"
+                  MinColumnWidth="134"
+                  >
+        </DataGrid>
     </Grid>
 </UserControl>

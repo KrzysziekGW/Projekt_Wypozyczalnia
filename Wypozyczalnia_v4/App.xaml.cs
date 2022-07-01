@@ -14,4 +14,5 @@ namespace Wypozyczalnia_v4
     public partial class App : Application
     {
     }
+
 }

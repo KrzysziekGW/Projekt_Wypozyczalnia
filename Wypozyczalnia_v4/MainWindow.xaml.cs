@@ -55,5 +55,21 @@ namespace Wypozyczalnia_v4
         {
             DataContext = new WypożyczViewModel();
         }
+
+        private void ButtonZaloguj_Click(object sender, RoutedEventArgs e)
+        {
+            string login = "Pracownik";
+
+            if ((BoxLogin.Text == login) && (BoxHaslo.Password == "Admin"))
+            {
+                MessageBox.Show("Poprawny loginni haslo!");
+                DataContext = new StronaGłównaViewModel();
+                PabelBoczny.Visibility = Visibility.Visible;
+            }
+            else if (BoxLogin.Text != "Pracownik" || BoxHaslo.Password != "Admin")
+            {
+                MessageBox.Show("Zły login lub hasło!");
+            }
+        }
     }
 }

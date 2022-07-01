@@ -1,4 +1,4 @@
-# Wypozyczalnia_v4-2
+# Wypozyczalnia_DB
 --////////////////////////////////-- 1.Tworzenie i uzupełnianie bazy danych --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 USE master;

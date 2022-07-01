@@ -58,18 +58,27 @@ namespace Wypozyczalnia_v4
 
         private void ButtonZaloguj_Click(object sender, RoutedEventArgs e)
         {
-            string login = "Pracownik";
+            
 
-            if ((BoxLogin.Text == login) && (BoxHaslo.Password == "Admin"))
+            if ((BoxLogin.Text == "") && (BoxHaslo.Password == ""))
             {
                 MessageBox.Show("Poprawny loginni haslo!");
                 DataContext = new StronaGłównaViewModel();
                 PabelBoczny.Visibility = Visibility.Visible;
             }
-            else if (BoxLogin.Text != "Pracownik" || BoxHaslo.Password != "Admin")
+            else if (BoxLogin.Text != "" || BoxHaslo.Password != "")
             {
                 MessageBox.Show("Zły login lub hasło!");
             }
+        }
+        private void BoxLogin_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            BoxLogin.Text = String.Empty;
+        }
+
+        private void BoxHaslo_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            BoxHaslo.Password = String.Empty;
         }
     }
 }

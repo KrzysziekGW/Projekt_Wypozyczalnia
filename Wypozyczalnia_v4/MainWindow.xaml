@@ -31,14 +31,11 @@
             <views:WypożyczView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
-    <Border CornerRadius="20">
-        <Border.Background>
-            <LinearGradientBrush>
-            <GradientStop Color="#7be9f6" Offset="0.5"/>
-            <GradientStop Color="#7ca5f6" Offset="1"/>
-        </LinearGradientBrush>
-        </Border.Background> 
-        <Grid>
+    <Border CornerRadius="20"
+            Background="#FFC11E"
+            >
+
+        <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
                 <ColumnDefinition/>
@@ -53,7 +50,9 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        FontSize="30"
-                       Margin="50,0,0,0"/>
+                       Margin="50,0,0,0"
+                       
+                       />
             <Button Content="Exit"
                        Grid.Column="1"
                        VerticalAlignment="Center"
@@ -63,28 +62,34 @@
                        Width="100"
                        Height="50"
                        Style="{StaticResource MenuButtonTheme}" Click="ExitButton"
+                    Foreground="White"
                        />
 
             <StackPanel Grid.Row="1" Visibility="Hidden" x:Name="PabelBoczny">
                 <Button Content="Strona Główna"
                         Height="75"
                         FontSize="30"
+                        Margin="5"
                         Style="{StaticResource MenuButtonTheme}" Click="StronaGłównaView_Clicked"/>
                 <Button Content="Klienci"
                         Height="75"
                         FontSize="30"
+                        Margin="5"
                         Style="{StaticResource MenuButtonTheme}" Click="DodajKlientaView_Clicked"/>
                 <Button Content="Zestawy"
                         Height="75"
                         FontSize="30"
+                        Margin="5"
                         Style="{StaticResource MenuButtonTheme}" Click="DodajZestawView_Clicked"/>
                 <Button Content="Wypożycz"
                         Height="75"
                         FontSize="30"
+                        Margin="5"
                         Style="{StaticResource MenuButtonTheme}" Click="WypożyczView_Clicked"/>
                 <Button Content="Zwrot Zestawu"
                         Height="75"
                         FontSize="30"
+                        Margin="5"
                         Style="{StaticResource MenuButtonTheme}" Click="ZwrotZestawuView_Clicked"/>
             </StackPanel>
 
@@ -132,9 +137,9 @@
                     Click="ButtonZaloguj_Click"
                     />
             </StackPanel>
-            
-            <ContentControl Content="{Binding}" Grid.ColumnSpan="2" Margin="241,73,9,2" Grid.RowSpan="2"/>
-            
+
+            <ContentControl Content="{Binding}" Margin="0,73,9,2" Grid.RowSpan="2" Grid.Column="1"/>
+
         </Grid>
     </Border>
 </Window>

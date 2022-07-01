@@ -8,7 +8,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
-        <Setter Property="Background" Value="#7ca5f6"/>
+        <Setter Property="Background" Value="#002D6D"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -20,8 +21,8 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="#7be9f6"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="#7be9f6"/>
+                            <Setter Property="Background" TargetName="border" Value="#2300B0"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#2300B0"/>
                         </Trigger>
                         
                         

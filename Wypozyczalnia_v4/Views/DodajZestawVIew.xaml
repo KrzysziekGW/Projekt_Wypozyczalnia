@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
              mc:Ignorable="d" 
              d:DesignHeight="825" d:DesignWidth="1350"
-             Background="#0088cc"
+             Background="#FFC11E"
              >
     <Grid>
         
@@ -45,12 +45,15 @@
 
             <DataGrid Name="DataGridZestaw" 
                         AutoGenerateColumns="True" 
-                        Height="400"                       
+                        Height="400"    
+                        Margin="0,5,0,0"
                         ItemsSource="{Binding}"
                         MinColumnWidth="29"
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden"
                         CanUserResizeRows="False"
+                        Style="{StaticResource DataGridStyle1}" 
+                        HeadersVisibility="Column"
                       >
             </DataGrid>
         </StackPanel>
@@ -74,6 +77,9 @@
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden"
                         CanUserResizeRows="False"
+                        Style="{StaticResource DataGridStyle1}" 
+                        HeadersVisibility="Column"
+                        
                         >
             </DataGrid>
 
@@ -87,6 +93,8 @@
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden"
                         CanUserResizeRows="False"
+                      Style="{StaticResource DataGridStyle1}" 
+                  HeadersVisibility="Column"
                       >
             </DataGrid>
 
@@ -100,6 +108,8 @@
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden"
                         CanUserResizeRows="False"
+                      Style="{StaticResource DataGridStyle1}" 
+                  HeadersVisibility="Column"
                         >
             </DataGrid>
 
@@ -113,6 +123,8 @@
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden"
                         CanUserResizeRows="False"
+                      Style="{StaticResource DataGridStyle1}" 
+                  HeadersVisibility="Column"
                         >
             </DataGrid>
             <Grid.RowDefinitions>

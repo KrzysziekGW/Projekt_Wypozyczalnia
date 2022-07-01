@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
              mc:Ignorable="d" 
              d:DesignHeight="825" d:DesignWidth="1350"
-             Background="#0088cc"
+             Background="#FFC11E"
              >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,26 +25,30 @@
                     Height="75"
                     FontSize="30"                            
                     Style="{StaticResource MenuButtonTheme}" 
-                    Click="ButtonZwrotZestawu_Click"/>
+                    Click="ButtonZwrotZestawu_Click"
+                    Margin="5"/>
 
             <Button x:Name="ButtonObliczKwoteDoZapłaty"
                     Content="Oblicz kwotę do zapłaty"
                     Height="75"
                     FontSize="30"                            
                     Style="{StaticResource MenuButtonTheme}" 
-                    Click="ButtonObliczKwotęDoZapłaty_Click"/>
+                    Click="ButtonObliczKwotęDoZapłaty_Click"
+                    Margin="5"/>
             
         </StackPanel>
 
         <DataGrid Name="WypożyczoneDataGrid" 
                   AutoGenerateColumns="True" 
                   Grid.Column="1" 
-                  Margin="5"
+                  
                   ItemsSource="{Binding}"                 
                   HorizontalScrollBarVisibility="Hidden"
                   VerticalScrollBarVisibility="Hidden"
                   CanUserResizeRows="False"
                   MinColumnWidth="134"
+                  Style="{StaticResource DataGridStyle1}" 
+                  HeadersVisibility="Column"
                   >
         </DataGrid>
     </Grid>

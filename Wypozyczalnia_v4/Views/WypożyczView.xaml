@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
              mc:Ignorable="d" 
              d:DesignHeight="825" d:DesignWidth="1350"
-             Background="#0088cc"
+             Background="#FFC11E"
              >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -37,7 +37,9 @@
                   HorizontalScrollBarVisibility="Hidden"
                   VerticalScrollBarVisibility="Hidden"
                   CanUserResizeRows="False" 
-                  Height="44"
+                  Height="60"
+                      Style="{StaticResource DataGridStyle1}" 
+                        HeadersVisibility="Column"
                   >
             </DataGrid>
 
@@ -51,8 +53,9 @@
                   HorizontalScrollBarVisibility="Hidden"
                   VerticalScrollBarVisibility="Hidden"
                   CanUserResizeRows="False"  
-                  Height="44"
-                  
+                  Height="60"
+                  Style="{StaticResource DataGridStyle1}" 
+                        HeadersVisibility="Column"
                   
                   
                   >
@@ -68,6 +71,8 @@
                   VerticalScrollBarVisibility="Hidden"
                   CanUserResizeRows="False"
                   MinColumnWidth="134"
+                  Style="{StaticResource DataGridStyle1}" 
+                  HeadersVisibility="Column"
                   >
         </DataGrid>
     </Grid>

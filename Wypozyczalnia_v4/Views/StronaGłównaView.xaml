@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Wypozyczalnia_v4.Views"
              mc:Ignorable="d" 
              d:DesignHeight="825" d:DesignWidth="1350"
-             Background="#0088cc">
+             Background="#FFC11E">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="255"/>
@@ -27,7 +27,9 @@
             Grid.Row="1"
             Padding="5,35"          
             AutoGenerateColumns="True"
-            ItemsSource="{Binding}">
+            ItemsSource="{Binding}"
+            Style="{StaticResource DataGridStyle1}" 
+            HeadersVisibility="Column">
                
             </DataGrid>
             <TextBlock

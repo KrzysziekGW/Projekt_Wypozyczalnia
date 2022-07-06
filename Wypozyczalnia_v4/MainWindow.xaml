@@ -19,7 +19,7 @@
             <views:StronaGłównaView DataContext="{Binding}"/>
         </DataTemplate>
         <DataTemplate x:Name="DodajKlientaViewTemple" DataType="{x:Type viewmodels:DodajKlientaViewModel}">
-            <views:DodajKlientaVIew DataContext="{Binding}"/>
+            <views:DodajKlientaView DataContext="{Binding}"/>
         </DataTemplate>
         <DataTemplate x:Name="DodajZestawViewTemple" DataType="{x:Type viewmodels:DodajZestawViewModel}">
             <views:DodajZestawVIew DataContext="{Binding}"/>

@@ -99,7 +99,7 @@ namespace Wypozyczalnia_v4.DbCon
         public int Id { get; set; }
         public int KlienicID { get; set; }
         public int ZestawID { get; set; }
-        public DateTime Wypożyczenia { get; set; }
+        public DateTime DataWypożyczenia { get; set; }
         public DateTime DataOddania { get; set; }
         public int PracownikID { get; set; }
         public decimal KworaDoZapłaty { get; set; }

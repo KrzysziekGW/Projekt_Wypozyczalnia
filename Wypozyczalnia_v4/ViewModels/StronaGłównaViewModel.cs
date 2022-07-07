@@ -17,17 +17,9 @@ namespace Wypozyczalnia_v4.ViewModels
         {
             InitializeComponent();
             startclock();
-
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand cmdZestaw = new SqlCommand("Select * from Zestaw", connection);
-            connection.Open();
-
-            DataTable dtZestaw = new DataTable();
-            dtZestaw.Load(cmdZestaw.ExecuteReader());
-            connection.Close();
-
-            Lista.DataContext = dtZestaw;
-
+            TabelDzisiejszeWypozyczenia();
+            TabelDzisiejszeZwroty();
+            
         }
         private void startclock()
         {
@@ -41,6 +33,31 @@ namespace Wypozyczalnia_v4.ViewModels
         {
             //throw new NotImplementedException(); 
             Zegar.Text = DateTime.Now.ToString();
+        }
+
+        public void TabelDzisiejszeWypozyczenia()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand cmdZestaw = new SqlCommand("Select * from dbo.v_DzisiejszeWypożyczenia", connection);
+            connection.Open();
+
+            DataTable dtZestaw = new DataTable();
+            dtZestaw.Load(cmdZestaw.ExecuteReader());
+            connection.Close();
+
+            DziesiejszeWypożyczeniaDataGrid.DataContext = dtZestaw;
+        }
+        public void TabelDzisiejszeZwroty()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand cmdZestaw = new SqlCommand("Select * from dbo.v_DzisiejszeZwroty", connection);
+            connection.Open();
+
+            DataTable dtZestaw = new DataTable();
+            dtZestaw.Load(cmdZestaw.ExecuteReader());
+            connection.Close();
+
+            DziesiejszeZwrotyDataGrid.DataContext = dtZestaw;
         }
     }
 }

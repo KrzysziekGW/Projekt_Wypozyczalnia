@@ -23,7 +23,7 @@ namespace Wypozyczalnia_v4.ViewModels
             TabelNajnowszyZestaw();
         }
 
-        [Obsolete]
+        
         private void ButtonWypożycz_Click(object sender, RoutedEventArgs e)
         {
             using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))

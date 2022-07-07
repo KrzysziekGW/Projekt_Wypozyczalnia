@@ -73,7 +73,10 @@
                   MinColumnWidth="134"
                   Style="{StaticResource DataGridStyle1}" 
                   HeadersVisibility="Column"
+                  
                   >
+               
+
         </DataGrid>
     </Grid>
 </UserControl>

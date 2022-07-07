@@ -6,7 +6,9 @@
         <Setter Property="GridLinesVisibility" Value="None"/>
         <Setter Property="Background" Value="#FFC11E"/>
         <Setter Property="RowBackground" Value="#FFC11E"/>
- 
+        
+
+
     </Style>
     <!-- DataGridColumnHeader style -->
     <Style x:Key="ColumnHeaderStyle1" TargetType="DataGridColumnHeader">

@@ -28,7 +28,7 @@ namespace Wypozyczalnia_v4.ViewModels
         {
             using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
             {
-                db.Database.ExecuteSqlCommand("EXEC Wypożycz " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now + "',null,2");
+                db.Database.ExecuteSqlCommand("EXEC Wypożycz " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now+ "',null,2");
                 db.SaveChanges();
                 TabelWypożyczone();
             }
@@ -63,8 +63,9 @@ namespace Wypozyczalnia_v4.ViewModels
             DataTable dt = new DataTable();
             dt.Load(cmd.ExecuteReader());
             connection.Close();
-
+            
             TopZestawIdDataGrid.DataContext = dt;
         }
+
     }
 }

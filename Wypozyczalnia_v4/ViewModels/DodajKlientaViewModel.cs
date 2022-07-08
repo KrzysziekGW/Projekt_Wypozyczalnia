@@ -13,10 +13,9 @@ using Wypozyczalnia_v4.DbCon;
 namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class DodajKlientaViewModel : UserControl
-            
-    {
-        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
+    {
+        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
 
         public DodajKlientaViewModel()
@@ -28,30 +27,49 @@ namespace Wypozyczalnia_v4.ViewModels
         private void ButtonDodajKlienta_Click(object sender, RoutedEventArgs e)
         {
 
-            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            if (BoxImie.Text != "" && BoxNazwisko.Text != "" && BoxPesel.Text != "" && BoxEmail.Text != "" && BoxTelefon.Text != "")
             {
-                db.Add(new Klient { Imie = BoxImie.Text, Nazwisko = BoxNazwisko.Text, PESEL = BoxPesel.Text, Email = BoxEmail.Text, Telefon = BoxTelefon.Text });
-                db.SaveChanges();
+                MessageBox.Show("Pomyślnie dodano klienta!");
 
+                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                {
+                    db.Add(new Klient { Imie = BoxImie.Text, Nazwisko = BoxNazwisko.Text, PESEL = BoxPesel.Text, Email = BoxEmail.Text, Telefon = BoxTelefon.Text });
+                    db.SaveChanges();
+                }
+
+                TabelKlienci();
+            }
+            else
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!");
             }
 
-            TabelKlienci();
+
+
         }
 
 
         private void ButtonUsunKlienta_Click(object sender, RoutedEventArgs e)
         {
-
-            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            if (BoxID.Text != "")
             {
-                string klientID = BoxID.Text;
-                int id = Int32.Parse(klientID);
-                db.Remove(new Klient { Id = id });
-                db.SaveChanges();
+                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                {
+                    string klientID = BoxID.Text;
+                    int id = Int32.Parse(klientID);
+                    db.Remove(new Klient { Id = id });
+                    db.SaveChanges();
 
+                }
+
+                TabelKlienci();
+                MessageBox.Show("Usunięto klienta!");
+            }
+            else
+            {
+                MessageBox.Show("Wypełnij puste pole!");
             }
 
-            TabelKlienci();
         }
 
 
@@ -64,7 +82,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
         private void BoxNazwisko_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^a-zA-Z]");
+            Regex regex = new Regex("");
             e.Handled = regex.IsMatch(e.Text);
         }
         private void BoxTelefon_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
@@ -83,6 +101,12 @@ namespace Wypozyczalnia_v4.ViewModels
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void BoxEmail_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+
+
         }
 
         public void TabelKlienci()

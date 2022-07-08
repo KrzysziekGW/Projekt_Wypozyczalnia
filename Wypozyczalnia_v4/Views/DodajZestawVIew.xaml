@@ -19,13 +19,13 @@
                     Margin="20"
                     >
             <TextBlock Margin="3"><Run Text="Podaj IDNart:"/></TextBlock>
-            <TextBox Text="0" x:Name="BoxNarty" Margin="3" PreviewTextInput="BoxNarty_PreviewTextInput"/>
+            <TextBox  x:Name="BoxNarty" Margin="3" PreviewTextInput="BoxNarty_PreviewTextInput"/>
             <TextBlock Margin="3"><Run Text="Podaj IDButów:"/></TextBlock>
-            <TextBox Text="0" x:Name="BoxButy" Margin="3" PreviewTextInput="BoxButy_PreviewTextInput"/>
+            <TextBox  x:Name="BoxButy" Margin="3" PreviewTextInput="BoxButy_PreviewTextInput"/>
             <TextBlock Margin="3"><Run Text="Podaj IDKasku:"/></TextBlock>
-            <TextBox Text="0" x:Name="BoxKask" Margin="3" PreviewTextInput="BoxKask_PreviewTextInput"/>
+            <TextBox  x:Name="BoxKask" Margin="3" PreviewTextInput="BoxKask_PreviewTextInput"/>
             <TextBlock Margin="3"><Run Text="Podaj IDKijka:"/></TextBlock>
-            <TextBox Text="0" x:Name="BoxKij" Margin="3"  PreviewTextInput="BoxKij_PreviewTextInput"/>
+            <TextBox  x:Name="BoxKij" Margin="3"  PreviewTextInput="BoxKij_PreviewTextInput"/>
 
             <Button x:Name="ButtonDodajKlienta"
                     Content="Dodaj Nowy Zestaw"

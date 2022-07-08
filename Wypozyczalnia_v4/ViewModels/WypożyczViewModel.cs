@@ -13,7 +13,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class WypożyczViewModel : UserControl
     {
-        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
         public WypożyczViewModel()
         {
@@ -23,15 +23,24 @@ namespace Wypozyczalnia_v4.ViewModels
             TabelNajnowszyZestaw();
         }
 
-        
+
         private void ButtonWypożycz_Click(object sender, RoutedEventArgs e)
         {
-            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
             {
-                db.Database.ExecuteSqlCommand("EXEC Wypożycz " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now+ "',null,2");
-                db.SaveChanges();
-                TabelWypożyczone();
+                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                {
+                    db.Database.ExecuteSqlCommand("EXEC Wypożycz " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now + "',null,2");
+                    db.SaveChanges();
+                    TabelWypożyczone();
+
+                }
             }
+            else
+            {
+                MessageBox.Show("Wypełnij wszystie pola!");
+            }
+
         }
         public void TabelWypożyczone()
         {
@@ -63,9 +72,8 @@ namespace Wypozyczalnia_v4.ViewModels
             DataTable dt = new DataTable();
             dt.Load(cmd.ExecuteReader());
             connection.Close();
-            
+
             TopZestawIdDataGrid.DataContext = dt;
         }
-
     }
 }

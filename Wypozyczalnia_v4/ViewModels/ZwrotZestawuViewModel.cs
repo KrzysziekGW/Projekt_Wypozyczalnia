@@ -14,7 +14,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class ZwrotZestawuViewModel : UserControl
     {
-        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
         public ZwrotZestawuViewModel()
         {
             InitializeComponent();
@@ -23,21 +23,38 @@ namespace Wypozyczalnia_v4.ViewModels
 
         private void ButtonZwrotZestawu_Click(object sender, RoutedEventArgs e)
         {
-            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
             {
-                db.Database.ExecuteSqlCommand("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now + "'");
-                db.SaveChanges();
-                TabelWypożyczone();
+                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                {
+                    db.Database.ExecuteSqlCommand("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now + "'");
+                    db.SaveChanges();
+                    TabelWypożyczone();
+                }
             }
+            else
+            {
+                MessageBox.Show("Wypełnij wszystie pola!");
+            }
+
+
         }
         private void ButtonObliczKwotęDoZapłaty_Click(object sender, RoutedEventArgs e)
         {
-            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
             {
-                db.Database.ExecuteSqlCommand("EXEC DodajKwoteDoZapłaty " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text));
-                db.SaveChanges();
-                TabelWypożyczone();
+                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                {
+                    db.Database.ExecuteSqlCommand("EXEC DodajKwoteDoZapłaty " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text));
+                    db.SaveChanges();
+                    TabelWypożyczone();
+                }
             }
+            else
+            {
+                MessageBox.Show("Wypełnij wszystie pola!");
+            }
+
         }
         public void TabelWypożyczone()
         {

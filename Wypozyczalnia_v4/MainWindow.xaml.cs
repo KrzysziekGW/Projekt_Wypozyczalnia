@@ -62,7 +62,7 @@ namespace Wypozyczalnia_v4
 
             if ((BoxLogin.Text == "") && (BoxHaslo.Password == ""))
             {
-                MessageBox.Show("Poprawny loginni haslo!");
+                MessageBox.Show("Poprawny login i haslo!");
                 DataContext = new StronaGłównaViewModel();
                 PabelBoczny.Visibility = Visibility.Visible;
             }

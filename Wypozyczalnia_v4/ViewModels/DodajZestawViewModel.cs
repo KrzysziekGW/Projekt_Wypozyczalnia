@@ -12,7 +12,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class DodajZestawViewModel : UserControl
     {
-        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
         public DodajZestawViewModel()
         {
@@ -26,71 +26,88 @@ namespace Wypozyczalnia_v4.ViewModels
 
         private void ButtonDodajZestaw_Click(object sender, RoutedEventArgs e)
         {
-            //Dodawanie zestawu
-            using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
+
+            if (BoxNarty.Text != "" && BoxButy.Text != "" && BoxKask.Text != "" && BoxKij.Text != "")
             {
-                ZestawC z = new ZestawC();
+                //Dodawanie zestawu
+                using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
+                {
+                    ZestawC z = new ZestawC();
 
-                z.NartyID = Int32.Parse(BoxNarty.Text);
-                z.ButyID = Int32.Parse(BoxButy.Text);
-                z.KaskiID = Int32.Parse(BoxKask.Text);
-                z.KijkiID = Int32.Parse(BoxKij.Text);
+                    z.NartyID = Int32.Parse(BoxNarty.Text);
+                    z.ButyID = Int32.Parse(BoxButy.Text);
+                    z.KaskiID = Int32.Parse(BoxKask.Text);
+                    z.KijkiID = Int32.Parse(BoxKij.Text);
 
-                context.Zestaw.Add(z);
-                context.SaveChanges();
+                    context.Zestaw.Add(z);
+                    context.SaveChanges();
 
-                int newId = z.Id;
+                    int newId = z.Id;
 
-                context.Database.ExecuteSqlCommand("EXEC DodajCeneZestawu " + newId);
-                context.SaveChanges();
+                    context.Database.ExecuteSqlCommand("EXEC DodajCeneZestawu " + newId);
+                    context.SaveChanges();
+
+                }
+
+                //Zmiana statusu dla przedmiotów z utworzonego zestawu wyżej
+                using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
+                {
+                    var nartyStatus = context.Narty.Single(i => i.Id == Int32.Parse(BoxNarty.Text));
+                    nartyStatus.StatusID = 2;
+
+                    var butyStatus = context.Buty.Single(i => i.Id == Int32.Parse(BoxButy.Text));
+                    butyStatus.StatusID = 2;
+
+                    var kaskiStatus = context.Kaski.Single(i => i.Id == Int32.Parse(BoxKask.Text));
+                    kaskiStatus.StatusID = 2;
+
+                    var kijkiStatus = context.Kijki.Single(i => i.Id == Int32.Parse(BoxKij.Text));
+                    kijkiStatus.StatusID = 2;
+                    context.Update(nartyStatus);
+                    context.Update(butyStatus);
+                    context.Update(kaskiStatus);
+                    context.Update(kijkiStatus);
+                    context.SaveChanges();
+                }
+
+                //Ponowne wczytanie tabel
+                TabelSprzęt();
+                TabelZestaw();
+
+                MessageBox.Show("Dodano zestaw!");
 
             }
-
-            //Zmiana statusu dla przedmiotów z utworzonego zestawu wyżej
-            using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
+            else
             {
-                var nartyStatus = context.Narty.Single(i => i.Id == Int32.Parse(BoxNarty.Text));
-                nartyStatus.StatusID = 2;
-
-                var butyStatus = context.Buty.Single(i => i.Id == Int32.Parse(BoxButy.Text));
-                butyStatus.StatusID = 2;
-
-                var kaskiStatus = context.Kaski.Single(i => i.Id == Int32.Parse(BoxKask.Text));
-                kaskiStatus.StatusID = 2;
-
-                var kijkiStatus = context.Kijki.Single(i => i.Id == Int32.Parse(BoxKij.Text));
-                kijkiStatus.StatusID = 2;
-                context.Update(nartyStatus);
-                context.Update(butyStatus);
-                context.Update(kaskiStatus);
-                context.Update(kijkiStatus);
-                context.SaveChanges();
+                MessageBox.Show("Wypełnij wszystkie pola!");
             }
-
-            //Ponowne wczytanie tabel
-            TabelSprzęt();
-            TabelZestaw();
-
-            MessageBox.Show("Dodano zestaw!");
 
         }
 
 
         private void ButtonUsunZestaw_Click(object sender, RoutedEventArgs e)
         {
-            //Usuwanie zestawu po id
-            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            if (BoxUsun.Text != "")
             {
-                db.Database.ExecuteSqlCommand("EXEC ZmieńStatus " + BoxUsun.Text + ",1");
-                db.Remove(new ZestawC { Id = Int32.Parse(BoxUsun.Text) });
-                db.SaveChanges();
+                //Usuwanie zestawu po id
+                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                {
+                    db.Database.ExecuteSqlCommand("EXEC ZmieńStatus " + BoxUsun.Text + ",1");
+                    db.Remove(new ZestawC { Id = Int32.Parse(BoxUsun.Text) });
+                    db.SaveChanges();
+                }
+
+                //Ponowne wczytanie tabel
+                TabelSprzęt();
+                TabelZestaw();
+
+                MessageBox.Show("Usunięto zestaw!");
+            }
+            else
+            {
+                MessageBox.Show("Wypełnij puste pole!");
             }
 
-            //Ponowne wczytanie tabel
-            TabelSprzęt();
-            TabelZestaw();
-
-            MessageBox.Show("Usunięto zestaw!");
 
         }
 

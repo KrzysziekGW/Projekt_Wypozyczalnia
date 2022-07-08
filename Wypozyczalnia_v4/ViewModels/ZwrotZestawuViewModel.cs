@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,7 +59,17 @@ namespace Wypozyczalnia_v4.ViewModels
         }
         private void ButtonWyszukajKlienta_Click(object sender, RoutedEventArgs e)
         {
-            TabelWyszukajKlienta();
+            SqlConnection connection = new SqlConnection(connectionString);
+            if (BoxImieKlient.Text != "" && BoxNazwiskoKlient.Text != "" && BoxTelefonKlient.Text != "")
+            {
+                TabelWyszukajKlienta();
+                MessageBox.Show("Znaleziono klienta!");
+            }
+            else if (BoxImieKlient.Text = new SqlCommand("Select * from Klienci where Imie = "+BoxImieKlient.Text+"", connection)
+            {
+                MessageBox.Show("Wypełnij wszystkie pola!");
+            }
+            
         }
         public void TabelWypożyczone()
         {
@@ -81,6 +92,22 @@ namespace Wypozyczalnia_v4.ViewModels
             connection.Close();
 
             WyszukajKlientaDataGrid.DataContext = dt;
+        }
+
+        private void BoxNazwiskoKlienta_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void BoxImieKlienta_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void BoxTelefonKlienta_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

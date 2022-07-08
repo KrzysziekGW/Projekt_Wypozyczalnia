@@ -17,11 +17,11 @@
                     Margin="20">
 
             <TextBlock Margin="3">Podaj Imię klienta:</TextBlock>
-            <TextBox x:Name="BoxImieKlient" Margin="3" MaxLength="50"/>
+            <TextBox x:Name="BoxImieKlient" Margin="3" MaxLength="50" PreviewTextInput="BoxImieKlienta_PreviewTextInput"/>
             <TextBlock Margin="3">Podaj Nazwisko klienta:</TextBlock>
-            <TextBox x:Name="BoxNazwiskoKlient" Margin="3" MaxLength="50"/>
+            <TextBox x:Name="BoxNazwiskoKlient" Margin="3" MaxLength="50" PreviewTextInput="BoxNazwiskoKlienta_PreviewTextInput"/>
             <TextBlock Margin="3">Podaj telefon klienta:</TextBlock>
-            <TextBox x:Name="BoxTelefonKlient" Margin="3" MaxLength="50"/>
+            <TextBox x:Name="BoxTelefonKlient" Margin="3" MaxLength="9" PreviewTextInput="BoxTelefonKlienta_PreviewTextInput"/>
 
             <Button x:Name="ButtonWyszukajKlienta"
                     Content="Wyszukaj klienta"

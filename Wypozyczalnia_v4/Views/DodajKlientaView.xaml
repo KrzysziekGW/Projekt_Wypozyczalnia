@@ -33,7 +33,7 @@
                     Click="ButtonDodajKlienta_Click"/>
             
             <TextBlock Margin="3">Podaj ID:</TextBlock>
-            <TextBox x:Name="BoxID" Margin="3"/>
+            <TextBox x:Name="BoxID" MaxLength="3" Margin="3"/>
             <Button x:Name="ButtonUsunKlienta"
                 Content="Usun Klienta"
                 Height="50"

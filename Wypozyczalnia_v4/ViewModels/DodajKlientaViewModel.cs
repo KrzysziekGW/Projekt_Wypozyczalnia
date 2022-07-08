@@ -15,7 +15,7 @@ namespace Wypozyczalnia_v4.ViewModels
     public partial class DodajKlientaViewModel : UserControl
 
     {
-        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
 
         public DodajKlientaViewModel()
@@ -26,24 +26,32 @@ namespace Wypozyczalnia_v4.ViewModels
         }
         private void ButtonDodajKlienta_Click(object sender, RoutedEventArgs e)
         {
-
+            
             if (BoxImie.Text != "" && BoxNazwisko.Text != "" && BoxPesel.Text != "" && BoxEmail.Text != "" && BoxTelefon.Text != "")
             {
-                
-
-                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                if (BoxPesel.Text.Length != 11 || BoxTelefon.Text.Length != 9)
                 {
-                    db.Add(new Klient { Imie = BoxImie.Text, Nazwisko = BoxNazwisko.Text, PESEL = BoxPesel.Text, Email = BoxEmail.Text, Telefon = BoxTelefon.Text });
-                    db.SaveChanges();
+                    MessageBox.Show("Podaj odpowiednia długośc Emaila lub Numeru telefonu!");
                 }
-                MessageBox.Show("Pomyślnie dodano klienta!");
-                TabelKlienci();
+                else
+
+                {
+                    using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                    {
+                        db.Add(new Klient { Imie = BoxImie.Text, Nazwisko = BoxNazwisko.Text, PESEL = BoxPesel.Text, Email = BoxEmail.Text, Telefon = BoxTelefon.Text });
+                        db.SaveChanges();
+                    }
+
+                    TabelKlienci();
+                    MessageBox.Show("Pomyślnie dodano klienta!");
+                }
+
             }
+
             else
             {
-                MessageBox.Show("Wypełnij wszystkie pola!");
+                MessageBox.Show("Wypełnij puste pola!");
             }
-
 
 
         }

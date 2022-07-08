@@ -15,7 +15,7 @@ namespace Wypozyczalnia_v4.ViewModels
     public partial class DodajKlientaViewModel : UserControl
 
     {
-        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
 
         public DodajKlientaViewModel()
@@ -29,14 +29,14 @@ namespace Wypozyczalnia_v4.ViewModels
 
             if (BoxImie.Text != "" && BoxNazwisko.Text != "" && BoxPesel.Text != "" && BoxEmail.Text != "" && BoxTelefon.Text != "")
             {
-                MessageBox.Show("Pomyślnie dodano klienta!");
+                
 
                 using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
                 {
                     db.Add(new Klient { Imie = BoxImie.Text, Nazwisko = BoxNazwisko.Text, PESEL = BoxPesel.Text, Email = BoxEmail.Text, Telefon = BoxTelefon.Text });
                     db.SaveChanges();
                 }
-
+                MessageBox.Show("Pomyślnie dodano klienta!");
                 TabelKlienci();
             }
             else
@@ -82,7 +82,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
         private void BoxNazwisko_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("");
+            Regex regex = new Regex("[^a-zA-Z]");
             e.Handled = regex.IsMatch(e.Text);
         }
         private void BoxTelefon_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)

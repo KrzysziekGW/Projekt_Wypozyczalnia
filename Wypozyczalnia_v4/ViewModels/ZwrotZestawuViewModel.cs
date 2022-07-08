@@ -14,7 +14,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class ZwrotZestawuViewModel : UserControl
     {
-        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
         public ZwrotZestawuViewModel()
         {
             InitializeComponent();
@@ -56,6 +56,10 @@ namespace Wypozyczalnia_v4.ViewModels
             }
 
         }
+        private void ButtonWyszukajKlienta_Click(object sender, RoutedEventArgs e)
+        {
+            TabelWyszukajKlienta();
+        }
         public void TabelWypożyczone()
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -66,6 +70,17 @@ namespace Wypozyczalnia_v4.ViewModels
             connection.Close();
 
             WypożyczoneDataGrid.DataContext = dt;
+        }
+        public void TabelWyszukajKlienta()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("Select * from WyszukajKlienta('" + BoxImieKlient.Text + "','" + BoxNazwiskoKlient.Text + "','" + Int32.Parse(BoxTelefonKlient.Text) + "')", connection);
+            connection.Open();
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            connection.Close();
+
+            WyszukajKlientaDataGrid.DataContext = dt;
         }
     }
 }

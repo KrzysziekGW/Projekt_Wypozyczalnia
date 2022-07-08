@@ -15,6 +15,22 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1"
                     Margin="20">
+
+            <TextBlock Margin="3">Podaj Imię klienta:</TextBlock>
+            <TextBox x:Name="BoxImieKlient" Margin="3" MaxLength="50"/>
+            <TextBlock Margin="3">Podaj Nazwisko klienta:</TextBlock>
+            <TextBox x:Name="BoxNazwiskoKlient" Margin="3" MaxLength="50"/>
+            <TextBlock Margin="3">Podaj telefon klienta:</TextBlock>
+            <TextBox x:Name="BoxTelefonKlient" Margin="3" MaxLength="50"/>
+
+            <Button x:Name="ButtonWyszukajKlienta"
+                    Content="Wyszukaj klienta"
+                    Height="75"
+                    FontSize="30"                            
+                    Style="{StaticResource MenuButtonTheme}" 
+                    Click="ButtonWyszukajKlienta_Click"
+                    Margin="5"/>
+            
             <TextBlock Margin="3">Podaj ID klienta:</TextBlock>
             <TextBox x:Name="BoxKlientID" Margin="3" MaxLength="50"/>
             <TextBlock Margin="3">Podaj ID zestawu:</TextBlock>
@@ -35,13 +51,34 @@
                     Style="{StaticResource MenuButtonTheme}" 
                     Click="ButtonObliczKwotęDoZapłaty_Click"
                     Margin="5"/>
+
+            
+
             
         </StackPanel>
 
-        <DataGrid Name="WypożyczoneDataGrid" 
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <DataGrid Name="WyszukajKlientaDataGrid" 
                   AutoGenerateColumns="True" 
-                  Grid.Column="1" 
-                  
+                  Grid.Row="0"                   
+                  ItemsSource="{Binding}"                 
+                  HorizontalScrollBarVisibility="Hidden"
+                  VerticalScrollBarVisibility="Hidden"
+                  CanUserResizeRows="False"                
+                  Style="{StaticResource DataGridStyle1}" 
+                  HeadersVisibility="Column"
+                  >
+            </DataGrid>
+            
+            <DataGrid Name="WypożyczoneDataGrid" 
+                  AutoGenerateColumns="True"                   
+                  Grid.Row="1" 
                   ItemsSource="{Binding}"                 
                   HorizontalScrollBarVisibility="Hidden"
                   VerticalScrollBarVisibility="Hidden"
@@ -50,6 +87,7 @@
                   Style="{StaticResource DataGridStyle1}" 
                   HeadersVisibility="Column"
                   >
-        </DataGrid>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

@@ -24,52 +24,50 @@ namespace Wypozyczalnia_v4.ViewModels
 
         private void ButtonZwrotZestawu_Click(object sender, RoutedEventArgs e)
         {
-            if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
-            {
-                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
                 {
-                    db.Database.ExecuteSqlCommand("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now + "'");
+
+
+                    db.Database.ExecuteSqlCommand("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now.ToString("MM/dd/yyyy h:mm tt") + "'");
                     db.SaveChanges();
                     TabelWypożyczone();
+
                 }
-            }
-            else
-            {
-                MessageBox.Show("Wypełnij wszystie pola!");
-            }
+                else
+                {
+                    MessageBox.Show("Wypełnij wszystie pola!");
+                }
 
 
         }
         private void ButtonObliczKwotęDoZapłaty_Click(object sender, RoutedEventArgs e)
         {
-            if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
-            {
-                using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+            using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
+                if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
                 {
+
+
                     db.Database.ExecuteSqlCommand("EXEC DodajKwoteDoZapłaty " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text));
                     db.SaveChanges();
                     TabelWypożyczone();
+
                 }
-            }
-            else
-            {
-                MessageBox.Show("Wypełnij wszystie pola!");
-            }
+                else
+                {
+                    MessageBox.Show("Wypełnij wszystie pola!");
+                }
 
         }
         private void ButtonWyszukajKlienta_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection = new SqlConnection(connectionString);
-            if (BoxImieKlient.Text != "" && BoxNazwiskoKlient.Text != "" && BoxTelefonKlient.Text != "")
-            {
-                TabelWyszukajKlienta();
-                MessageBox.Show("Znaleziono klienta!");
-            }
-            else if (BoxImieKlient.Text = new SqlCommand("Select * from Klienci where Imie = "+BoxImieKlient.Text+"", connection)
-            {
-                MessageBox.Show("Wypełnij wszystkie pola!");
-            }
-            
+
+            TabelWyszukajKlienta();
+            MessageBox.Show("Znaleziono klienta!");
+
+
+
         }
         public void TabelWypożyczone()
         {

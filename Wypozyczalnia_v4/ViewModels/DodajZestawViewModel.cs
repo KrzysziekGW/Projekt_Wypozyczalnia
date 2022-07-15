@@ -12,7 +12,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class DodajZestawViewModel : UserControl
     {
-        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=Localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
         public DodajZestawViewModel()
         {
@@ -50,7 +50,7 @@ namespace Wypozyczalnia_v4.ViewModels
                 }
 
                 //Zmiana statusu dla przedmiotów z utworzonego zestawu wyżej
-                using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
+                /*using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
                 {
                     var nartyStatus = context.Narty.Single(i => i.Id == Int32.Parse(BoxNarty.Text));
                     nartyStatus.StatusID = 2;
@@ -68,7 +68,7 @@ namespace Wypozyczalnia_v4.ViewModels
                     context.Update(kaskiStatus);
                     context.Update(kijkiStatus);
                     context.SaveChanges();
-                }
+                }*/
 
                 //Ponowne wczytanie tabel
                 TabelSprzęt();

@@ -13,7 +13,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class WypożyczViewModel : UserControl
     {
-        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=Localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
         public WypożyczViewModel()
         {
@@ -30,7 +30,8 @@ namespace Wypozyczalnia_v4.ViewModels
             {
                 using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
                 {
-                    db.Database.ExecuteSqlCommand("EXEC Wypożycz " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now + "',null,2");
+                    db.Database.ExecuteSqlCommand("EXEC Wypożycz " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now.ToString("MM/dd/yyyy h:mm tt") + "',null,2");
+                    db.Database.ExecuteSqlCommand("EXEC ZmieńStatus " + Int32.Parse(BoxZestawID.Text) + " , 2");
                     db.SaveChanges();
                     TabelWypożyczone();
 

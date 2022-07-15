@@ -15,7 +15,7 @@ namespace Wypozyczalnia_v4.ViewModels
     public partial class DodajKlientaViewModel : UserControl
 
     {
-        string connectionString = @"Data Source=DESKTOP-QR4BK4H;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=Localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
 
         public DodajKlientaViewModel()

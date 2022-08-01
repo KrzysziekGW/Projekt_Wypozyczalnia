@@ -16,24 +16,24 @@
         <StackPanel Grid.Row="1"
                     Margin="20">
             <TextBlock Margin="3">Podaj Imię:</TextBlock>
-            <TextBox x:Name="BoxImie" Margin="3" MaxLength="50" PreviewTextInput="BoxImie_PreviewTextInput"  />
+            <TextBox x:Name="BoxImie" Margin="3" MaxLength="50" PreviewTextInput="BoxImie_PreviewTextInput" Style="{StaticResource TextBoxTheme}"/>
             <TextBlock Margin="3">Podaj Nazwisko:</TextBlock>
-            <TextBox x:Name="BoxNazwisko" Margin="3" MaxLength="50"  PreviewTextInput="BoxNazwisko_PreviewTextInput"/>
+            <TextBox x:Name="BoxNazwisko" Margin="3" MaxLength="50"  PreviewTextInput="BoxNazwisko_PreviewTextInput" Style="{StaticResource TextBoxTheme}"/>
             <TextBlock Margin="3">Podaj PESEL:</TextBlock>
-            <TextBox x:Name="BoxPesel" MaxLength="11" Margin="3" PreviewTextInput="BoxPesel_PreviewTextInput"  />
+            <TextBox x:Name="BoxPesel" MaxLength="11" Margin="3" PreviewTextInput="BoxPesel_PreviewTextInput" Style="{StaticResource TextBoxTheme}"/>
             <TextBlock Margin="3">Podaj Email:</TextBlock>
-            <TextBox x:Name="BoxEmail" Margin="3" MaxLength="50"/>
+            <TextBox x:Name="BoxEmail" Margin="3" MaxLength="50" Style="{StaticResource TextBoxTheme}"/>
             <TextBlock Margin="3">Podaj Telefon:</TextBlock>
-            <TextBox x:Name="BoxTelefon"  MaxLength="9"  Margin="3" PreviewTextInput="BoxTelefon_PreviewTextInput"/>
+            <TextBox x:Name="BoxTelefon"  MaxLength="9"  Margin="3" PreviewTextInput="BoxTelefon_PreviewTextInput" Style="{StaticResource TextBoxTheme}"/>
             <Button x:Name="ButtonDodajKlienta"
                     Content="Dodaj Klienta"
                     Height="75"
                     FontSize="30"                            
                     Style="{StaticResource MenuButtonTheme}" 
                     Click="ButtonDodajKlienta_Click"/>
-            
+
             <TextBlock Margin="3">Podaj ID:</TextBlock>
-            <TextBox x:Name="BoxID" MaxLength="3" Margin="3"/>
+            <TextBox x:Name="BoxID" MaxLength="3" Margin="3" Style="{StaticResource TextBoxTheme}"/>
             <Button x:Name="ButtonUsunKlienta"
                 Content="Usun Klienta"
                 Height="50"

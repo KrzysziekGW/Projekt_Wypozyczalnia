@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Wypozyczalnia_v4.DbCon;
 using System.Windows.Controls;
@@ -30,8 +26,8 @@ namespace Wypozyczalnia_v4.ViewModels
             {
                 using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
                 {
-                    db.Database.ExecuteSqlCommand("EXEC Wypożycz " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now.ToString("MM/dd/yyyy h:mm tt") + "',null,2");
-                    db.Database.ExecuteSqlCommand("EXEC ZmieńStatus " + Int32.Parse(BoxZestawID.Text) + " , 2");
+                    db.Database.ExecuteSqlInterpolated($"EXEC Wypożycz { Int32.Parse(BoxKlientID.Text)},{Int32.Parse(BoxZestawID.Text)},{DateTime.Now.ToString("MM/dd/yyyy h:mm tt")},{null},{2}");
+                    db.Database.ExecuteSqlRaw("EXEC ZmieńStatus " + Int32.Parse(BoxZestawID.Text) + " , 2");
                     db.SaveChanges();
                     TabelWypożyczone();
 

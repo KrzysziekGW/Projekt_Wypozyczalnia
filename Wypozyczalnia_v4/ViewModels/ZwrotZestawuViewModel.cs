@@ -27,8 +27,8 @@ namespace Wypozyczalnia_v4.ViewModels
             using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
                 if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
                 {
-                    db.Database.ExecuteSqlCommand("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now.ToString("MM/dd/yyyy h:mm tt") + "'");
-                    db.Database.ExecuteSqlCommand("EXEC ZmieńStatus " + Int32.Parse(BoxZestawID.Text) + " , 1");
+                    db.Database.ExecuteSqlRaw("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now.ToString("MM/dd/yyyy h:mm tt") + "'");
+                    db.Database.ExecuteSqlRaw("EXEC ZmieńStatus " + Int32.Parse(BoxZestawID.Text) + " , 1");
                     db.SaveChanges();
                     TabelWypożyczone();
                 }
@@ -46,7 +46,7 @@ namespace Wypozyczalnia_v4.ViewModels
                 {
 
 
-                    db.Database.ExecuteSqlCommand("EXEC DodajKwoteDoZapłaty " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text));
+                    db.Database.ExecuteSqlRaw("EXEC DodajKwoteDoZapłaty " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text));
                     db.SaveChanges();
                     TabelWypożyczone();
 

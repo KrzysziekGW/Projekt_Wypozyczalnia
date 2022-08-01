@@ -3,8 +3,8 @@
     <Style BasedOn="{StaticResource {x:Type Button}}"
            TargetType="{x:Type Button}"
            x:Key="MenuButtonTheme">
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        
+        <Setter Property="BorderThickness" Value="5"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1"/>
@@ -21,11 +21,11 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="#2300B0"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="#2300B0"/>
+                            <Setter Property="Background" TargetName="border" Value="#FFC11E"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#002D6D"/>
+                            
                         </Trigger>
-                        
-                        
+                                               
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

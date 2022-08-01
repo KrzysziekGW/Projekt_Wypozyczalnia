@@ -44,7 +44,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
                     int newId = z.Id;
 
-                    context.Database.ExecuteSqlCommand("EXEC DodajCeneZestawu " + newId);
+                    context.Database.ExecuteSqlRaw("EXEC DodajCeneZestawu " + newId);
                     context.SaveChanges();
 
                 }
@@ -92,7 +92,7 @@ namespace Wypozyczalnia_v4.ViewModels
                 //Usuwanie zestawu po id
                 using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
                 {
-                    db.Database.ExecuteSqlCommand("EXEC ZmieńStatus " + BoxUsun.Text + ",1");
+                    db.Database.ExecuteSqlRaw("EXEC ZmieńStatus " + BoxUsun.Text + ",1");
                     db.Remove(new ZestawC { Id = Int32.Parse(BoxUsun.Text) });
                     db.SaveChanges();
                 }

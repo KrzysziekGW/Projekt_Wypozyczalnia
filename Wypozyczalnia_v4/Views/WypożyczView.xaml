@@ -16,9 +16,9 @@
         <StackPanel Grid.Row="1"
                     Margin="20">
             <TextBlock Margin="3">Podaj ID klienta:</TextBlock>
-            <TextBox x:Name="BoxKlientID" Margin="3" MaxLength="50"/>
+            <TextBox x:Name="BoxKlientID" Margin="3" MaxLength="50" Style="{StaticResource TextBoxTheme}" />
             <TextBlock Margin="3">Podaj ID zestawu:</TextBlock>
-            <TextBox x:Name="BoxZestawID" Margin="3" MaxLength="50"/>
+            <TextBox x:Name="BoxZestawID" Margin="3" MaxLength="50" Style="{StaticResource TextBoxTheme}" />
             
             <Button x:Name="ButtonWypożycz"
                     Content="Wypożycz"

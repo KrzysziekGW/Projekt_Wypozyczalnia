@@ -12,14 +12,14 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class StronaGłównaViewModel : UserControl
     {
-        string connectionString = @"Data Source=Localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
         public StronaGłównaViewModel()
         {
             InitializeComponent();
             startclock();
             TabelDzisiejszeWypozyczenia();
             TabelDzisiejszeZwroty();
-            
+
         }
         private void startclock()
         {

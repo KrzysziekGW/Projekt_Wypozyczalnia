@@ -9,7 +9,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class WypożyczViewModel : UserControl
     {
-        string connectionString = @"Data Source=Localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
         public WypożyczViewModel()
         {
@@ -22,7 +22,20 @@ namespace Wypozyczalnia_v4.ViewModels
 
         private void ButtonWypożycz_Click(object sender, RoutedEventArgs e)
         {
-            if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand check_Klient = new SqlCommand("SELECT COUNT(*) FROM Klienci where  (ID = @ID)", connection);
+            check_Klient.Parameters.AddWithValue("@ID", BoxKlientID.Text);
+            int KlientExist = (int)check_Klient.ExecuteScalar();
+
+            SqlCommand check_Zestaw = new SqlCommand("SELECT COUNT(*) FROM Zestaw WHERE (ID = @ID)", connection);
+            check_Zestaw.Parameters.AddWithValue("@ID", BoxZestawID.Text);
+            int ZestawExist = (int)check_Zestaw.ExecuteScalar();
+
+
+
+
+            if (KlientExist > 0 && ZestawExist > 0)
             {
                 using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
                 {
@@ -35,7 +48,7 @@ namespace Wypozyczalnia_v4.ViewModels
             }
             else
             {
-                MessageBox.Show("Wypełnij wszystie pola!");
+                MessageBox.Show("Podaj odpowiednie ID!");
             }
 
         }

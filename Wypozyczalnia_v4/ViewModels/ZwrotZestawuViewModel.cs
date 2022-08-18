@@ -15,7 +15,7 @@ namespace Wypozyczalnia_v4.ViewModels
 {
     public partial class ZwrotZestawuViewModel : UserControl
     {
-        string connectionString = @"Data Source=Localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+        string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
         public ZwrotZestawuViewModel()
         {
             InitializeComponent();
@@ -24,9 +24,23 @@ namespace Wypozyczalnia_v4.ViewModels
 
         private void ButtonZwrotZestawu_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand check_Klient = new SqlCommand("SELECT COUNT(*) FROM Klienci where  (ID = @ID)", connection);
+            check_Klient.Parameters.AddWithValue("@ID", BoxKlientID.Text);
+            int KlientExist = (int)check_Klient.ExecuteScalar();
+
+            SqlCommand check_Zestaw = new SqlCommand("SELECT COUNT(*) FROM Zestaw WHERE (ID = @ID)", connection);
+            check_Zestaw.Parameters.AddWithValue("@ID", BoxZestawID.Text);
+            int ZestawExist = (int)check_Zestaw.ExecuteScalar();
+
+
             using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
-                if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
+
+
+                if (ZestawExist > 0 && KlientExist > 0)
                 {
+
                     db.Database.ExecuteSqlRaw("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now.ToString("MM/dd/yyyy h:mm tt") + "'");
                     db.Database.ExecuteSqlRaw("EXEC ZmieńStatus " + Int32.Parse(BoxZestawID.Text) + " , 1");
                     db.SaveChanges();
@@ -34,15 +48,25 @@ namespace Wypozyczalnia_v4.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Wypełnij wszystie pola!");
+                    MessageBox.Show("Podaj odpowednie ID!");
                 }
 
 
         }
         private void ButtonObliczKwotęDoZapłaty_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand check_Klient = new SqlCommand("SELECT COUNT(*) FROM Klienci where  (ID = @ID)", connection);
+            check_Klient.Parameters.AddWithValue("@ID", BoxKlientID.Text);
+            int KlientExist = (int)check_Klient.ExecuteScalar();
+
+            SqlCommand check_Zestaw = new SqlCommand("SELECT COUNT(*) FROM Zestaw WHERE (ID = @ID)", connection);
+            check_Zestaw.Parameters.AddWithValue("@ID", BoxZestawID.Text);
+            int ZestawExist = (int)check_Zestaw.ExecuteScalar();
+
             using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
-                if (BoxKlientID.Text != "" && BoxKlientID.Text != "")
+                if (ZestawExist > 0 && KlientExist > 0)
                 {
 
 
@@ -53,16 +77,39 @@ namespace Wypozyczalnia_v4.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Wypełnij wszystie pola!");
+                    MessageBox.Show("Podaj odpowiednie ID");
                 }
 
         }
         private void ButtonWyszukajKlienta_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection connection = new SqlConnection(connectionString);
 
-            TabelWyszukajKlienta();
-            MessageBox.Show("Znaleziono klienta!");
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand check_Imie = new SqlCommand("SELECT COUNT(*) FROM Klienci where  (Imie = @Imie)", connection);
+            check_Imie.Parameters.AddWithValue("@Imie", BoxImieKlient.Text);
+            int ImieExist = (int)check_Imie.ExecuteScalar();
+
+            SqlCommand check_Nazwisko = new SqlCommand("SELECT COUNT(*) FROM Klienci WHERE (Nazwisko = @Nazwisko)", connection);
+            check_Nazwisko.Parameters.AddWithValue("@Nazwisko", BoxNazwiskoKlient.Text);
+            int NazwiskoExist = (int)check_Nazwisko.ExecuteScalar();
+
+            SqlCommand check_Numer = new SqlCommand("SELECT COUNT(*) FROM Klienci WHERE (Telefon = @Telefon)", connection);
+            check_Numer.Parameters.AddWithValue("@Telefon", BoxTelefonKlient.Text);
+            int NumerExist = (int)check_Numer.ExecuteScalar();
+
+
+            if (ImieExist > 0 && NazwiskoExist > 0 && NumerExist > 0)
+            {
+                TabelWyszukajKlienta();
+                MessageBox.Show("Znaleziono klienta!");
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono klienta!");
+            }
+
 
 
 

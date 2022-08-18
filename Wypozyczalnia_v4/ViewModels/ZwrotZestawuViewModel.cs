@@ -34,11 +34,15 @@ namespace Wypozyczalnia_v4.ViewModels
             check_Zestaw.Parameters.AddWithValue("@ID", BoxZestawID.Text);
             int ZestawExist = (int)check_Zestaw.ExecuteScalar();
 
+            SqlCommand check_ZestawX = new SqlCommand("SELECT COUNT(*) FROM Zestaw inner join Wypożyczone on Wypożyczone.ZestawID = Zestaw.ID where (Zestaw.ID = @ID) and Wypożyczone.DataOddania is null", connection);
+            check_ZestawX.Parameters.AddWithValue("@ID", BoxZestawID.Text);
+            int ZestawXExist = (int)check_ZestawX.ExecuteScalar();
+
 
             using (WypozyczalniaContext db = new WypozyczalniaContext(connectionString))
 
 
-                if (ZestawExist > 0 && KlientExist > 0)
+                if (ZestawExist > 0 && KlientExist > 0 && ZestawXExist > 0 )
                 {
 
                     db.Database.ExecuteSqlRaw("EXEC ZwrotZestawu " + Int32.Parse(BoxKlientID.Text) + "," + Int32.Parse(BoxZestawID.Text) + ",'" + DateTime.Now.ToString("MM/dd/yyyy h:mm tt") + "'");

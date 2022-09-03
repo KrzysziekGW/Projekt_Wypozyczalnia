@@ -144,7 +144,7 @@ VALUES ('Rossignol Alias', '38', 1, '10'),
 
 INSERT INTO Kaski(Nazwa, Rozmiar,StatusID, Cena) 
 VALUES ('Marker Consort', 'M', 1, '5'),
-(' Uvex Skid', 'M', 1, '5'),
+('Uvex Skid', 'M', 1, '5'),
 ('Head Vico', 'L', 1, '5'),
 ('Head Trex', 'S', 1, '5'),
 ('P1us Rent', 'L', 1, '5'),
@@ -155,7 +155,7 @@ VALUES ('Marker Consort', 'M', 1, '5'),
 ('Head Varius', 'M', 1, '5'),
 ('Head Compact Anthracite', 'M', 1, '5'),
 ('Head Compact Dusky', 'S', 1, '5'),
-('Uvex Fierce', 'S', 2, '5'),
+('Uvex Fierce', 'S', 1, '5'),
 ('Uvex Fierce Strato', 'L', 1, '5'),
 ('Uvex P1us', 'L', 1, '5'),
 ('Uvex Jimm Octo', 'S', 1, '5'),
@@ -175,7 +175,7 @@ VALUES ('Komperdell Camaro Mix', '120', 1, '5'),
 ('Head Multi', '110', 1, '5'),
 ('Fischer Unlimited', '135', 1, '5'),
 ('Salomon Arctic', '115', 1, '5'),
-('Komperdell Carv', '125', 2, '5'),
+('Komperdell Carv', '125', 1, '5'),
 ('Leki Vista', '125', 1, '5'),
 ('Head Multi Alu', '130', 1, '5'),
 ('Atomic Black', '110', 1, '5'),
@@ -190,28 +190,34 @@ VALUES ('Komperdell Camaro Mix', '120', 1, '5'),
 
 --////////////////////////////////-- 2. Tworzenie widoków --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
+Go
 --Widok 1
 CREATE VIEW dbo.v_PokażKlientów
 AS
 	select Imie,Nazwisko,Telefon,KlienciID,ZestawID,DataWypożyczenia,DataOddania,KwotaDoZapłaty from Klienci
 	inner join Wypożyczone on Wypożyczone.KlienciID = Klienci.ID
 
+Go
 --Widok 2
 CREATE VIEW dbo.v_DzisiejszeWypożyczenia
 AS
-Select * from v_PokażKlientów where DataWypożyczenia = Convert(date, getdate())
+select * from v_PokażKlientów
+where cast(DataWypożyczenia as Date) = cast(getdate() as Date)
 
+
+
+Go
 --Widok 3
 CREATE VIEW dbo.v_DzisiejszeZwroty
 AS
-Select * from v_PokażKlientów where DataOddania = Convert(date, getdate())
+select * from v_PokażKlientów
+where cast(DataOddania as Date) = cast(getdate() as Date)
 
 /*Wartości null w tabeli są spowodowane, tym że jeszcze klienci nie oddali sprzętu i nie możemy obliczyć Kwoty do zapłaty,
 ponieważ nie wiemy ile dni zestaw jest na wypożyczeniu*/
 
 --////////////////////////////////-- 3. Tworzenie Funkcji --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+Go
 --Funkcja 1
 CREATE FUNCTION dbo.ObliczCeneZestawu
 	(@ZestawID INT)
@@ -243,7 +249,7 @@ END
 -wszystkie kask po 5zl
 -wszystkie kijki po 5zl
 */
-
+Go
 --Funkcja 2
 
 CREATE FUNCTION dbo.ObliczIlośćDni
@@ -260,8 +266,7 @@ BEGIN
 	RETURN @IlośćDni 
 END
 
-Select dbo.ObliczIlośćDni(4,5)
-Select * from Wypożyczone
+Go
 --Funkcja 3
 CREATE FUNCTION WyszukajKlienta
 	(@Imie nvarchar(50),@Nazwisko nvarchar(50),@Telefon nvarchar(10))	
@@ -272,6 +277,7 @@ select Imie,Nazwisko,Telefon,KlienciID,ZestawID,DataWypożyczenia,DataOddania,Kw
 	inner join Wypożyczone on Wypożyczone.KlienciID = Klienci.ID
 	where Imie = @Imie AND Nazwisko = @Nazwisko AND Telefon = @Telefon
 
+	GO
 --Funkcja 4
 CREATE FUNCTION PokażZestawKlienta
 	(@KlientID int)	
@@ -300,7 +306,7 @@ RETURN
 
 
 --////////////////////////////////-- 4. Tworzenie Procedur --\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+Go
 --Procedura 1
 CREATE PROCEDURE DodajKlienta
 	@Imie nvarchar (50),
@@ -315,6 +321,7 @@ BEGIN
 	VALUES (@Imie, @Nazwisko, @PESEL, @Email, @Telefon)
 END
 
+Go
 --Procedura 2
 CREATE PROCEDURE DodajZestaw
 	@NartyID int,
@@ -327,6 +334,7 @@ BEGIN
 	VALUES (@NartyID, @ButyID, @KaskiID, @KijkiID)
 END
 
+Go
 --Procedura 3
 CREATE PROCEDURE DodajCeneZestawu
 	@ZestawID INT
@@ -337,6 +345,7 @@ BEGIN
 		WHERE id = @ZestawID
 END
 
+Go
 --Procedura 4
 CREATE PROCEDURE Wypożycz
 	@KlientID int,
@@ -350,6 +359,7 @@ BEGIN
 	VALUES (@KlientID, @ZestawID, @DataWypożyczenia, @DataOddania, @PracownikID, null)
 END
 
+Go
 --Procedura 5
 CREATE PROCEDURE ZmieńStatus
 	@ZestawID INT,
@@ -374,6 +384,7 @@ BEGIN
 		where Zestaw.id = @ZestawID
 END
 
+Go
 --Procedura 6
 CREATE PROCEDURE ZwrotZestawu
 	@KlientID INT,
@@ -386,6 +397,7 @@ BEGIN
 		WHERE KlienciID = @KlientID AND ZestawID = @ZestawID
 END
 
+Go
 --Procedura 7
 CREATE PROCEDURE DodajKwoteDoZapłaty
 	@KlientID INT,

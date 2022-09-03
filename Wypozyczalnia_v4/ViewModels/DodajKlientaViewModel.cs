@@ -92,26 +92,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
                 MessageBox.Show("Podaj odpowiednie ID!");
                 connection.Close();
-            }
-
-
-
-
-
-            /*SqlConnection conn = new SqlConnection("Data Source =.; Integrated Security = True");
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Klienic where ID=@IDp" );
-            cmd.Parameters.AddWithValue("IDp", BoxID.Text.Trim());
-            SqlDataReader myeader = cmd.ExecuteReader();
-            if (myeader.Read()) 
-            {
-                MessageBox.Show("Istnieje");
-            }
-            else
-            {
-                MessageBox.Show("Nie istnieje");
-            }
-            conn.Close();*/
+            }      
         }
 
 

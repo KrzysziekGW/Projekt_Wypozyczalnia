@@ -12,7 +12,11 @@ using System.Windows.Controls;
 using Wypozyczalnia_v4.DbCon;
 
 namespace Wypozyczalnia_v4.ViewModels
-{
+{   
+    /// <summary>
+    /// Klasa umożliwia dokonywanie zwrotów zestawów oraz obliczanie ceny należnej za zestaw oraz wyszukanie klienta według danych.
+    /// Klasa wyświtla następujące tabele Wpożyczone oraz Klienci
+    /// </summary>
     public partial class ZwrotZestawuViewModel : UserControl
     {
         string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
@@ -118,7 +122,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
 
         }
-        public void TabelWypożyczone()
+        private void TabelWypożyczone()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Select * from Wypożyczone", connection);
@@ -129,7 +133,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
             WypożyczoneDataGrid.DataContext = dt;
         }
-        public void TabelWyszukajKlienta()
+        private void TabelWyszukajKlienta()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Select * from WyszukajKlienta('" + BoxImieKlient.Text + "','" + BoxNazwiskoKlient.Text + "','" + Int32.Parse(BoxTelefonKlient.Text) + "')", connection);

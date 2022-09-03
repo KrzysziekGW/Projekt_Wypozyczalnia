@@ -12,18 +12,28 @@ using Wypozyczalnia_v4.DbCon;
 
 namespace Wypozyczalnia_v4.ViewModels
 {
+
+    /// <summary>
+    /// W tej klasie tworzymy oraz usuwamy użytowników z bazy danych (Tabela Klienci)
+    /// </summary>
+
     public partial class DodajKlientaViewModel : UserControl
 
     {
+ 
+        
+        
         string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
 
-
+      
+       
         public DodajKlientaViewModel()
         {
             InitializeComponent();
             TabelKlienci();
 
         }
+     
         private void ButtonDodajKlienta_Click(object sender, RoutedEventArgs e)
         {
 
@@ -58,7 +68,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
         }
 
-
+       
         private void ButtonUsunKlienta_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -96,7 +106,7 @@ namespace Wypozyczalnia_v4.ViewModels
         }
 
 
-
+        
         private void BoxImie_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^a-zA-Z]");
@@ -133,7 +143,7 @@ namespace Wypozyczalnia_v4.ViewModels
         }
 
 
-        public void TabelKlienci()
+        private void TabelKlienci()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Select * from Klienci", connection);
@@ -146,5 +156,6 @@ namespace Wypozyczalnia_v4.ViewModels
         }
 
     }
+    
 }
 

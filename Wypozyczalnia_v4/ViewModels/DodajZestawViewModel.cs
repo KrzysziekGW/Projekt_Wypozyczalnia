@@ -9,15 +9,17 @@ using Wypozyczalnia_v4.DbCon;
 using System.Windows.Controls;
 
 namespace Wypozyczalnia_v4.ViewModels
-{
+{   /// <summary>
+    /// W tej klasie tworzymy oraz usuwamy Zestawy.
+    /// Służy również do wyświetlania tabel Narty,Buty,Kaski,Kijki i Zestawy
+    /// </summary>
     public partial class DodajZestawViewModel : UserControl
     {
         string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+
         public DodajZestawViewModel()
         {
             InitializeComponent();
-
-            //Wczytanie tabel Narty,buty,kaski,kijki i Zestawów
             TabelSprzęt();
             TabelZestaw();
         }
@@ -67,29 +69,6 @@ namespace Wypozyczalnia_v4.ViewModels
                     context.SaveChanges();
 
                 }
-
-                //Zmiana statusu dla przedmiotów z utworzonego zestawu wyżej
-                /*using (WypozyczalniaContext context = new WypozyczalniaContext(connectionString))
-                {
-                    var nartyStatus = context.Narty.Single(i => i.Id == Int32.Parse(BoxNarty.Text));
-                    nartyStatus.StatusID = 2;
-
-                    var butyStatus = context.Buty.Single(i => i.Id == Int32.Parse(BoxButy.Text));
-                    butyStatus.StatusID = 2;
-
-                    var kaskiStatus = context.Kaski.Single(i => i.Id == Int32.Parse(BoxKask.Text));
-                    kaskiStatus.StatusID = 2;
-
-                    var kijkiStatus = context.Kijki.Single(i => i.Id == Int32.Parse(BoxKij.Text));
-                    kijkiStatus.StatusID = 2;
-                    context.Update(nartyStatus);
-                    context.Update(butyStatus);
-                    context.Update(kaskiStatus);
-                    context.Update(kijkiStatus);
-                    context.SaveChanges();
-                }*/
-
-                //Ponowne wczytanie tabel
                 TabelSprzęt();
                 TabelZestaw();
 
@@ -176,7 +155,7 @@ namespace Wypozyczalnia_v4.ViewModels
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        public void TabelZestaw()
+        private void TabelZestaw()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Select Id,NartyID,ButyID,KaskiID,KijkiID,CenaZestawu AS Cena from Zestaw", connection);
@@ -187,7 +166,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
             DataGridZestaw.DataContext = dt;
         }
-        public void TabelSprzęt()
+        private void TabelSprzęt()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmdNarty = new SqlCommand("Select * from Narty", connection);

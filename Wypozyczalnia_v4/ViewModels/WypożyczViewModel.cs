@@ -6,7 +6,10 @@ using System.Windows;
 using Wypozyczalnia_v4.DbCon;
 using System.Windows.Controls;
 namespace Wypozyczalnia_v4.ViewModels
-{
+{   /// <summary>
+    /// Klasa ta umożliwia nam wypożyczanie zestawów oraz tworzenie ich.
+    /// Wyświetla ona również dwie tabele z najnowszymi klientami oraz zestawami i tabele wpożyczone.
+    /// </summary>
     public partial class WypożyczViewModel : UserControl
     {
         string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
@@ -32,8 +35,7 @@ namespace Wypozyczalnia_v4.ViewModels
             check_Zestaw.Parameters.AddWithValue("@ID", BoxZestawID.Text);
             int ZestawExist = (int)check_Zestaw.ExecuteScalar();
 
-
-
+           
 
             if (KlientExist > 0 && ZestawExist > 0)
             {
@@ -50,9 +52,10 @@ namespace Wypozyczalnia_v4.ViewModels
             {
                 MessageBox.Show("Podaj odpowiednie ID!");
             }
+            
 
         }
-        public void TabelWypożyczone()
+        private void TabelWypożyczone()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Select * from Wypożyczone", connection);
@@ -63,7 +66,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
             WypożyczoneDataGrid.DataContext = dt;
         }
-        public void TabelNajnowszyKlient()
+        private void TabelNajnowszyKlient()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Select TOP 1 * from Klienci Order By ID Desc", connection);
@@ -74,7 +77,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
             TopKlientIdDataGrid.DataContext = dt;
         }
-        public void TabelNajnowszyZestaw()
+        private void TabelNajnowszyZestaw()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("Select TOP 1 * from Zestaw Order By ID Desc", connection);

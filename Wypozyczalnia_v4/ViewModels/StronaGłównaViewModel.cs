@@ -9,10 +9,14 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace Wypozyczalnia_v4.ViewModels
-{
+{   /// <summary>
+    /// Klasa ta jest odpowiedzialna za wyświtalnie aktualnej godziny oraz dwóch tabel z Dzisiejszymi Zwrotami oraz Wypożyczeniami.
+    /// </summary>
     public partial class StronaGłównaViewModel : UserControl
     {
         string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=Wypozyczalnia;Integrated Security=True";
+
+       
         public StronaGłównaViewModel()
         {
             InitializeComponent();
@@ -35,7 +39,7 @@ namespace Wypozyczalnia_v4.ViewModels
             Zegar.Text = DateTime.Now.ToString();
         }
 
-        public void TabelDzisiejszeWypozyczenia()
+        private void TabelDzisiejszeWypozyczenia()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmdZestaw = new SqlCommand("Select * from dbo.v_DzisiejszeWypożyczenia", connection);
@@ -47,7 +51,7 @@ namespace Wypozyczalnia_v4.ViewModels
 
             DziesiejszeWypożyczeniaDataGrid.DataContext = dtZestaw;
         }
-        public void TabelDzisiejszeZwroty()
+        private void TabelDzisiejszeZwroty()
         {
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand cmdZestaw = new SqlCommand("Select * from dbo.v_DzisiejszeZwroty", connection);

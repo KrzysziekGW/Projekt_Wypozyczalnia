@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace Wypozyczalnia_v4.DbCon
 {
-
+    /// <summary>
+    /// Zmienne w tej klasie służą do połączenia tabel z bazy z naszymi formularzami.
+    /// </summary>
     class WypozyczalniaContext : DbContext
     {
         public DbSet<Klient> Klienci { get; set; }
@@ -31,8 +33,11 @@ namespace Wypozyczalnia_v4.DbCon
         {
             options.UseSqlServer(this.ConnectionString);
         }
+       
     }
-
+    /// <summary>
+    /// Wsztskie klasy poniżej służą do zapisywania i odczytywania danych z bazy danych.
+    /// </summary>
 
     public class Klient
     {
@@ -43,7 +48,7 @@ namespace Wypozyczalnia_v4.DbCon
         public string Email { get; set; }
         public string Telefon { get; set; }
     }
-
+    
     public class PracownicyC
     {
         public int Id { get; set; }
@@ -115,7 +120,7 @@ namespace Wypozyczalnia_v4.DbCon
         public decimal CenaZestawu { get; set; }
 
     }
-
+   
 
 }
 
